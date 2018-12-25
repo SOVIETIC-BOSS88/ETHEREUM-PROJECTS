@@ -1,0 +1,19 @@
+version: 0.0
+os: linux
+files:
+  - source: ./web
+    destination: /opt/alicetoken/web
+  - source: ./build
+    destination: /opt/alicetoken/build
+  - source: ./ecosystem.config.js
+    destination: /opt/alicetoken
+hooks:
+  ApplicationStop:
+    - location: ./scripts/stop.sh
+      runas: ubuntu
+  BeforeInstall:
+    - location: ./scripts/preinstall.sh
+      runas: ubuntu
+  ApplicationStart:
+    - location: ./scripts/start.sh
+      runas: ubuntu

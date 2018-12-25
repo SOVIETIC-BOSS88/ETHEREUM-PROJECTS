@@ -1,0 +1,21 @@
+{
+  "name": "adventure-collectibles",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "aws-sdk": "^1.18.0",
+    "express": "^4.16.3",
+    "openzeppelin-solidity": "^1.9.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

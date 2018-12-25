@@ -1,0 +1,34 @@
+version: 0.2
+
+env:
+  parameter-store:
+    INFURA_API_KEY: INFURA_API_KEY
+    CONTRACT_ADDRESS: CONTRACT_ADDRESS
+    AWS_ACCESS_KEY_ID: ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY: SECRET_ACCESS_KEY
+phases:
+  install:
+    commands:
+      - echo Install phase...nothing to do yet...
+  pre_build:
+    commands:
+      - echo Pre-build phase...
+      - sed -i "s/{NODE_ENV}/production/g" ecosystem.config.js
+      - sed -i "s/{INFURA_API_KEY}/$INFURA_API_KEY/g" ecosystem.config.js
+      - sed -i "s/{CONTRACT_ADDRESS}/$CONTRACT_ADDRESS/g" ecosystem.config.js
+      - sed -i "s/{AWS_ACCESS_KEY_ID}/$AWS_ACCESS_KEY_ID/g" ecosystem.config.js
+      - sed -i "s/{AWS_SECRET_ACCESS_KEY}/$AWS_SECRET_ACCESS_KEY/g" ecosystem.config.js
+
+  build:
+    commands:
+      - echo Build started on `date`
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - web/**/*
+    - build/**/*
+    - scripts/*
+    - appspec.yml
+    - ecosystem.config.js
