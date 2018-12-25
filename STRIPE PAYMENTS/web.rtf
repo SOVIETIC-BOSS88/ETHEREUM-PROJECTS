@@ -1,0 +1,150 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh13700\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\pard\pardeftab720\sl280\partightenfactor0
+
+\f1 \cf2 \expnd0\expndtw0\kerning0
+\{"1972-8931":2000,"2440-5140":999,"1790-3748":2000,\
+\
+"2601-8348":999,"1944-6350":4993,\
+\
+"1285-1786":3795,"1504-7132":3196,"1191-5711":5393,\
+\
+"1083-1756":4994,"1532-7428":3995,"1826-9761":2197,\
+\
+"1912-1758":1000,"1496-3521":1000\}\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0 \cf0 \kerning1\expnd0\expndtw0 \
+\
+\
+\
+\
+<div id="verification">\
+      <div id="token-request">\
+        <div id="token-request-button"></div>\
+      </div>\
+      <form id="token-form" method="POST" action="/tokens">\
+        <p class="instruction">Complete your receipt number and wallet address details below</p>\
+        <section>\
+          <h2>Receipt &amp; Address Information</h2>\
+          <fieldset class="with-state">\
+            <label>\
+              <span>Receipt Number</span>\
+              <input name="receiptNumber" class="field" placeholder="1234-5678" required>\
+            </label>\
+            <label>\
+              <span>Metamask Address</span>\
+              <input name="metamaskAddress" class="field" placeholder="0x0" required>\
+            </label>\
+            <button type="submit">Receive Token</button>\
+          </fieldset>\
+         </section>\
+       </form>\
+    </div>\
+\
+\
+\
+\
+\
+/* Verification */\
+\
+#verification \{\
+  max-width: 480px;\
+  margin: 0 auto;\
+  padding: 30px 0;\
+  transition: visibility 0s, opacity 0.5s linear 0.5s;\
+\}\
+\
+#main.verification #verification \{\
+  visibility: visible;\
+  opacity: 1;\
+\}\
+\
+/* Checkout */\
+\
+#checkout \{\
+  max-width: 480px;\
+  margin: 0 auto;\
+  padding: 30px 0;\
+  transition: visibility 0s, opacity 0.5s linear 0.5s;\
+\}\
+\
+#main.checkout #checkout \{\
+  visibility: visible;\
+  opacity: 1;\
+\}\
+\
+section \{\
+  display: flex;\
+  flex-direction: column;\
+  position: relative;\
+  text-align: left;\
+\}\
+\
+h1 \{\
+  margin: 0 0 20px 0;\
+  font-size: 20px;\
+  font-weight: 500;\
+\}\
+\
+h2 \{\
+  margin: 15px 0;\
+  color: #32325d;\
+  text-transform: uppercase;\
+  letter-spacing: 0.3px;\
+  font-size: 13px;\
+  font-weight: 500;\
+\}\
+\
+/* Token Request */\
+#token-request \{\
+  visibility: hidden;\
+  opacity: 0;\
+  min-height: 100px;\
+  padding: 20px 0;\
+  transition: visibility 0s, opacity 0.3s ease-in;\
+\}\
+\
+#token-request.visible \{\
+  visibility: visible;\
+  opacity: 1;\
+\}\
+\
+#token-form \{\
+  margin: 0 -30px;\
+  padding: 20px 30px 30px;\
+  border-radius: 4px;\
+  border: 1px solid #e8e8fb;\
+\}\
+\
+\
+\
+\
+//\
+const bodyParser = require('body-parser');\
+//\
+\
+\
+\
+///////\
+  router.use(bodyParser.json());\
+  router.use(bodyParser.urlencoded(\{ extended: true \}));\
+\
+\
+\
+// Create an order on the backend.\
+router.post('/orders', async (req, res, next) => \{\
+  let \{currency, items, email, shipping\} = req.body;\
+  try \{\
+    let order = await orders.create(currency, items, email, shipping);\
+    return res.status(200).json(\{order\});\
+  \} catch (err) \{\
+    return res.status(500).json(\{error: err.message\});\
+  \}\
+\});}
