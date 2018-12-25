@@ -1,0 +1,22 @@
+{
+  "name": "thank_you",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "node web/server/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.259.1",
+    "express": "^4.16.3",
+    "openzeppelin-solidity": "^1.10.0",
+    "truffle-hdwallet-provider": "0.0.5",
+    "web3": "^0.20.6"
+  }
+}
